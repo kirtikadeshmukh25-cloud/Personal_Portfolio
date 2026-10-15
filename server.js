@@ -7,27 +7,25 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const ADMIN_KEY = process.env.ADMIN_KEY || 'admin123';
-const PROFILE_FILE = path.join(__dirname, 'data', 'profile.json');
-const MESSAGES_FILE = path.join(__dirname, 'data', 'messages.json');
+const PROFILE_FILE = path.join(__dirname, 'profile.json');
+const MESSAGES_FILE = path.join(__dirname, 'messages.json');
 
-if (!fs.existsSync(path.join(__dirname, 'data'))) fs.mkdirSync(path.join(__dirname, 'data'));
 if (!fs.existsSync(MESSAGES_FILE)) fs.writeFileSync(MESSAGES_FILE, '[]');
 
 app.use(express.json({ limit: '10kb' }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname));
 
 const contactLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
-  message: { error: 'Too many requests. Please try again in 15 minutes.' }
+  message: { error: 'Too many requests. Please try again later.' }
 });
 
 app.get('/api/profile', (req, res) => {
   try {
-    const data = JSON.parse(fs.readFileSync(PROFILE_FILE, 'utf-8'));
-    res.json(data);
+    res.json(JSON.parse(fs.readFileSync(PROFILE_FILE, 'utf-8')));
   } catch (err) {
-    res.status(500).json({ error: 'Could not load profile data.' });
+    res.status(500).json({ error: 'Could not load profile.' });
   }
 });
 
@@ -40,17 +38,16 @@ app.post('/api/contact', contactLimiter, (req, res) => {
   if (errors.length) return res.status(400).json({ error: errors.join(' ') });
 
   const messages = JSON.parse(fs.readFileSync(MESSAGES_FILE, 'utf-8'));
-  const newMsg = {
+  messages.push({
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7),
     name: name.trim(),
     email: email.trim(),
     message: message.trim(),
     date: new Date().toISOString(),
     read: false
-  };
-  messages.push(newMsg);
+  });
   fs.writeFileSync(MESSAGES_FILE, JSON.stringify(messages, null, 2));
-  console.log(`📩 ${newMsg.name} <${newMsg.email}>`);
+  console.log(`📩 ${name} <${email}>`);
   res.json({ success: true, message: "Thanks! I'll get back to you soon." });
 });
 
@@ -72,7 +69,7 @@ app.delete('/api/messages/:id', adminAuth, (req, res) => {
   res.json({ success: true });
 });
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
 app.listen(PORT, () => {
   console.log(`\n✅ http://localhost:${PORT}`);
