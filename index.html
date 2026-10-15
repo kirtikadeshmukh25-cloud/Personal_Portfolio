@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="loader" id="loader"><div class="loader-ring"></div></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-outline" id="cursorOutline"></div>
+  <canvas id="particles"></canvas>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#home" class="logo">&lt;<span>You</span>/&gt;</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <p class="hero-greeting reveal">👋 Hello, I'm</p>
+      <h1 class="hero-name reveal" id="heroName">Loading…</h1>
+      <div class="hero-role reveal">
+        <span>I'm a </span><span class="typed" id="typed"></span><span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-tagline reveal" id="heroTagline"></p>
+      <div class="buttons reveal">
+        <a href="#skills" class="btn btn-primary magnetic">My Skills</a>
+        <a href="#contact" class="btn btn-ghost magnetic">Hire Me</a>
+      </div>
+      <div class="hero-socials reveal" id="heroSocials"></div>
+    </div>
+    <a href="#about" class="scroll-down"><span></span></a>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="num">01.</span> About Me</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p id="aboutText"></p>
+          <div class="info-list" id="aboutInfo"></div>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+      </div>
+      <div class="timeline-wrap reveal">
+        <h3 class="sub-title">Experience & Education</h3>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="num">02.</span> Skills & Tech</h2>
+      <div class="filter-tabs reveal" id="skillFilters">
+        <button class="tab active" data-filter="all">All</button>
+        <button class="tab" data-filter="frontend">Frontend</button>
+        <button class="tab" data-filter="backend">Backend</button>
+        <button class="tab" data-filter="tools">Tools</button>
+      </div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="num">03.</span> Get In Touch</h2>
+      <div class="contact-wrapper">
+        <div class="contact-info reveal">
+          <h3>Let's work together.</h3>
+          <p>Have a project in mind? Send a message and I'll get back to you within 24 hours.</p>
+          <div class="contact-items" id="contactItems"></div>
+        </div>
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <div class="field">
+            <input type="text" id="name" required />
+            <label for="name">Your Name</label>
+            <span class="error-msg" id="nameError"></span>
+          </div>
+          <div class="field">
+            <input type="email" id="email" required />
+            <label for="email">Your Email</label>
+            <span class="error-msg" id="emailError"></span>
+          </div>
+          <div class="field">
+            <textarea id="message" rows="5" required></textarea>
+            <label for="message">Your Message</label>
+            <span class="error-msg" id="messageError"></span>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full magnetic" id="submitBtn">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-loader"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> <strong id="footerName"></strong> · Built with Node.js & Express</p>
+  </footer>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <button class="back-to-top" id="backToTop">↑</button>
+
+  <script src="script.js"></script>
+</body>
+</html>

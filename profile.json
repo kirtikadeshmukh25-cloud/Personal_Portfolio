@@ -1,0 +1,82 @@
+{
+  "name": "Kirtika Deshmukh",
+  "title": "Full Stack Developer",
+  "tagline": "2nd-year BCA student passionate about building full-stack web apps with React, Node.js, and MongoDB.",
+  "roles": [
+    "Full Stack Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "React Developer",
+    "MERN Stack Learner"
+  ],
+  "about": "Hi! I'm Kirtika Deshmukh, a 2nd-year BCA student at Eternal University, Baru Sahib, Himachal Pradesh. I love building full-stack web applications using React, Node.js, Express.js, and MongoDB. I've completed a YSF internship where I learned how PayPal works across different countries, and I've built several real projects including a Typing Speed Test, a Student Feedback Manager, and an Ask Gemini app. I'm actively looking for opportunities as a Frontend, Backend, or Full Stack Developer.",
+  "location": "Village Lobhi, Tah. Tumsar, Dist. Bhandara, Maharashtra, India",
+  "email": "kirtikadeshmukh25@navgurukul.org",
+  "phone": "+91 95794 02765",
+  "availability": "Student · Open for internships & freelance",
+  "socials": {
+    "github": "https://github.com/kirtikadeshmukh25-cloud",
+    "linkedin": "https://www.linkedin.com/in/kirtika-deshmukh-7037073b1/",
+    "twitter": ""
+  },
+  "stats": [
+    { "label": "Projects Built", "value": 3, "suffix": "+" },
+    { "label": "Tech Skills",    "value": 9, "suffix": "+" },
+    { "label": "Internship",     "value": 1, "suffix": ""  },
+    { "label": "Year of BCA",    "value": 2, "suffix": "nd" }
+  ],
+  "skills": [
+    { "name": "HTML",           "level": 92, "category": "frontend" },
+    { "name": "CSS",            "level": 90, "category": "frontend" },
+    { "name": "JavaScript",     "level": 85, "category": "frontend" },
+    { "name": "React",          "level": 80, "category": "frontend" },
+    { "name": "Tailwind CSS",   "level": 85, "category": "frontend" },
+    { "name": "Node.js",        "level": 80, "category": "backend"  },
+    { "name": "Express.js",     "level": 80, "category": "backend"  },
+    { "name": "MongoDB",        "level": 75, "category": "backend"  },
+    { "name": "MongoDB Atlas",  "level": 75, "category": "backend"  }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Computer Applications (BCA) — 2nd Year",
+      "school": "Eternal University, Baru Sahib, Himachal Pradesh",
+      "year": "2024 – 2027 (Ongoing)"
+    },
+    {
+      "degree": "Higher Secondary (+2)",
+      "school": "MPL Nehru College, Tumsar, Maharashtra",
+      "year": "Completed"
+    }
+  ],
+  "experience": [
+    {
+      "role": "YSF Intern",
+      "company": "YSF Internship Program",
+      "year": "Completed",
+      "desc": "Learned how PayPal works across different countries — payment flows, currency handling, and international transactions."
+    }
+  ],
+  "projects": [
+    {
+      "title": "Typing Speed Test",
+      "desc": "A web app where users type a given sentence and get their WPM (words per minute) score in real time.",
+      "tags": ["react", "node", "express"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud",
+      "emoji": "⌨️"
+    },
+    {
+      "title": "Student Feedback Manager",
+      "desc": "Students can submit feedback that is stored in a MongoDB database. Includes a full backend with Node.js & Express.",
+      "tags": ["node", "express", "mongodb", "fullstack"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud",
+      "emoji": "📝"
+    },
+    {
+      "title": "Ask Gemini",
+      "desc": "An AI-powered app where users can ask questions and get responses via the Gemini API. Built with Node.js, Express, and vanilla JS.",
+      "tags": ["node", "express", "javascript"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud",
+      "emoji": "🤖"
+    }
+  ]
+}
