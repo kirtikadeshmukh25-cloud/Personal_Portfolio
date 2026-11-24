@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio</title>
+  <title>Kirtika Deshmukh | Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -17,16 +17,55 @@
   <canvas id="particles"></canvas>
   <div class="scroll-progress" id="scrollProgress"></div>
 
+  <!-- HEADER START -->
   <header class="header" id="header">
     <nav class="nav">
-      <a href="#home" class="logo">&lt;<span>You</span>/&gt;</a>
+      <a href="#home" class="logo">
+        <span class="logo-box">KD</span>
+        <div class="logo-text">
+          <strong>KIRTIKA DESHMUKH</strong>
+          <small>FULL-STACK DEVELOPER</small>
+        </div>
+      </a>
+      
       <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#skills" class="nav-link">Skills</a></li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li>
+          <a href="#home" class="nav-link active">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            HOME
+          </a>
+        </li>
+        <li>
+          <a href="#about" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            ABOUT ME
+          </a>
+        </li>
+        <li>
+          <a href="#skills" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            SKILLS
+          </a>
+        </li>
+        <li>
+          <a href="#projects" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            PROJECTS
+          </a>
+        </li>
+        <li>
+          <a href="#contact" class="nav-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+            CONTACT
+          </a>
+        </li>
       </ul>
+
       <div class="nav-actions">
+        <a href="#contact" class="btn btn-connect">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          LET'S CONNECT
+        </a>
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -35,24 +74,75 @@
       </div>
     </nav>
   </header>
+  <!-- HEADER END -->
 
+  <!-- HERO SECTION START -->
   <section id="home" class="hero">
     <div class="hero-glow"></div>
-    <div class="hero-content">
-      <p class="hero-greeting reveal">👋 Hello, I'm</p>
-      <h1 class="hero-name reveal" id="heroName">Loading…</h1>
-      <div class="hero-role reveal">
-        <span>I'm a </span><span class="typed" id="typed"></span><span class="cursor-blink">|</span>
+    <div class="container hero-container">
+      
+      <!-- Left Side -->
+      <div class="hero-left">
+        <div class="hero-badge reveal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+          Where Code Meets Creativity, Innovation Shapes Tomorrow.
+        </div>
+        <h1 class="hero-title reveal">
+          FULL-STACK<br><span>WEB DEVELOPER</span>
+        </h1>
+        <p class="hero-subtitle reveal">DEVELOPING SCALABLE & DYNAMIC WEB APPLICATIONS</p>
+        <p class="hero-desc reveal" id="heroTagline">
+          <!-- Text script se load hoga -->
+        </p>
+        
+        <div class="buttons reveal">
+          <a href="#projects" class="btn btn-primary magnetic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            CURATED PROJECTS
+          </a>
+          <a href="#" class="btn btn-ghost magnetic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+            DOWNLOAD RESUME
+          </a>
+        </div>
+
+        <div class="hero-stats reveal">
+          <div class="h-stat">
+            <h3>6+</h3>
+            <p>Projects Built</p>
+          </div>
+          <div class="h-stat">
+            <h3>10+</h3>
+            <p>Tech Skills</p>
+          </div>
+          <div class="h-stat">
+            <h3>2nd</h3>
+            <p>Year BCA</p>
+          </div>
+        </div>
       </div>
-      <p class="hero-tagline reveal" id="heroTagline"></p>
-      <div class="buttons reveal">
-        <a href="#skills" class="btn btn-primary magnetic">My Skills</a>
-        <a href="#contact" class="btn btn-ghost magnetic">Hire Me</a>
+
+      <!-- Right Side (Photo Card) -->
+      <div class="hero-right reveal">
+        <div class="photo-card">
+          <div class="card-glow"></div>
+          <div class="status-badge">
+            <span class="dot"></span> app.status('DEPLOYED')
+          </div>
+          <!-- APNI PHOTO KA NAAM YAHAN DALEIN -->
+          <img src="your-photo.jpg" alt="Kirtika Deshmukh" class="profile-img" />
+          
+          <div class="tech-stack-card">
+            <p>TECH STACK</p>
+            <strong>MERN Stack & RESTful API Architecture</strong>
+            <div class="progress-line"><div class="progress-fill"></div></div>
+          </div>
+        </div>
       </div>
-      <div class="hero-socials reveal" id="heroSocials"></div>
+      
     </div>
-    <a href="#about" class="scroll-down"><span></span></a>
   </section>
+  <!-- HERO SECTION END -->
 
   <section id="about" class="section">
     <div class="container">
@@ -84,9 +174,17 @@
     </div>
   </section>
 
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="num">03.</span> Projects</h2>
+      <p class="projects-intro reveal">A selection of things I've built — from full-stack apps to fun experiments.</p>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
   <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title reveal"><span class="num">03.</span> Get In Touch</h2>
+      <h2 class="section-title reveal"><span class="num">04.</span> Get In Touch</h2>
       <div class="contact-wrapper">
         <div class="contact-info reveal">
           <h3>Let's work together.</h3>

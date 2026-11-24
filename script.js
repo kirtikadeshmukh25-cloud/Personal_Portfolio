@@ -51,8 +51,8 @@ if (window.matchMedia('(pointer: fine)').matches) {
   (function loop() {
     ctx.clearRect(0, 0, w, h);
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const pColor = dark ? 'rgba(124,92,255,.7)' : 'rgba(124,92,255,.5)';
-    const lColor = dark ? 'rgba(124,92,255,.08)' : 'rgba(124,92,255,.06)';
+    const pColor = dark ? 'rgba(212,175,55,.7)' : 'rgba(212,175,55,.5)';
+    const lColor = dark ? 'rgba(212,175,55,.08)' : 'rgba(212,175,55,.06)';
     parts.forEach(p => {
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0 || p.x > w) p.vx *= -1;
@@ -133,23 +133,6 @@ function initMagnets() {
   });
 }
 
-function typeRoles(roles) {
-  const el = $('#typed');
-  let i = 0, c = 0, del = false;
-  (function tick() {
-    const cur = roles[i];
-    if (!del) {
-      el.textContent = cur.slice(0, ++c);
-      if (c === cur.length) { del = true; return setTimeout(tick, 1600); }
-      setTimeout(tick, 70);
-    } else {
-      el.textContent = cur.slice(0, --c);
-      if (c === 0) { del = false; i = (i + 1) % roles.length; return setTimeout(tick, 300); }
-      setTimeout(tick, 35);
-    }
-  })();
-}
-
 function animateCounter(el, target, suffix) {
   const start = performance.now(), dur = 1600;
   (function frame(now) {
@@ -164,20 +147,9 @@ function animateCounter(el, target, suffix) {
 async function loadProfile() {
   try {
     const data = await (await fetch('/api/profile')).json();
-    $('#heroName').textContent = data.name;
-    $('#heroTagline').textContent = data.tagline;
     document.title = `${data.name} | ${data.title}`;
     $('#footerName').textContent = data.name;
-    typeRoles(data.roles);
-
-    const icons = {
-      github: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2.9-.3 1.9-.4 2.9-.4s2 .1 2.9.4c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>`,
-      linkedin: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17C2.7 2 2 2.7 2 3.5v17C2 21.3 2.7 22 3.5 22h17c.8 0 1.5-.7 1.5-1.5v-17c0-.8-.7-1.5-1.5-1.5zM8 19H5V9h3v10zM6.5 7.7c-1 0-1.7-.8-1.7-1.7s.8-1.7 1.7-1.7 1.7.8 1.7 1.7-.8 1.7-1.7 1.7zM19 19h-3v-5.3c0-1.3-.5-2.1-1.6-2.1-.9 0-1.4.6-1.6 1.2-.1.2-.1.5-.1.8V19h-3V9h3v1.4c.4-.6 1.1-1.5 2.7-1.5 2 0 3.6 1.3 3.6 4V19z"/></svg>`,
-      twitter: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2h3.3l-7.2 8.3L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2L18.2 2zm-1.2 18h1.8L7.1 3.9H5.2L17 20z"/></svg>`
-    };
-    $('#heroSocials').innerHTML = Object.entries(data.socials).map(([k, url]) =>
-      `<a href="${url}" target="_blank" aria-label="${k}">${icons[k] || k}</a>`
-    ).join('');
+    $('#heroTagline').textContent = data.tagline;
 
     $('#aboutText').textContent = data.about;
     $('#aboutInfo').innerHTML = `
@@ -230,6 +202,8 @@ async function loadProfile() {
       renderSkills(data.skills, tab.dataset.filter);
     });
 
+    renderProjects(data.projects || []);
+
     $('#contactItems').innerHTML = `
       <a class="contact-item" href="mailto:${data.email}">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
@@ -275,6 +249,46 @@ function renderSkills(skills, filter) {
     });
   }, { threshold: .3 });
   grid.querySelectorAll('.skill-card').forEach(c => barObs.observe(c));
+  observeReveals();
+}
+
+function renderProjects(projects) {
+  const grid = $('#projectsGrid');
+  if (!grid) return;
+
+  if (!projects.length) {
+    grid.innerHTML = `<p class="projects-empty">No projects to show yet.</p>`;
+    return;
+  }
+
+  const getProjectIcon = (title) => {
+    const t = title.toLowerCase();
+    if (t.includes('time')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`;
+    if (t.includes('pass')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+    if (t.includes('cognitive') || t.includes('brain')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>`;
+    if (t.includes('game')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" x2="10" y1="11" y2="11"/><line x1="8" x2="8" y1="9" y2="13"/><line x1="15" x2="15.01" y1="12" y2="12"/><line x1="18" x2="18.01" y1="10" y2="10"/><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/></svg>`;
+    if (t.includes('feedback')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+    if (t.includes('typing')) return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="M6 8h.01"/><path d="M10 8h.01"/><path d="M14 8h.01"/><path d="M18 8h.01"/><path d="M8 12h.01"/><path d="M12 12h.01"/><path d="M16 12h.01"/><path d="M7 16h10"/></svg>`;
+    return `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>`;
+  };
+
+  grid.innerHTML = projects.map(p => `
+    <article class="project-card reveal">
+      <div class="project-emoji">${getProjectIcon(p.title)}</div>
+      <h3 class="project-title">${p.title}</h3>
+      <p class="project-desc">${p.desc}</p>
+      <div class="project-tags">
+        ${(p.tags || []).map(t => `<span class="project-tag">${t}</span>`).join('')}
+      </div>
+      <a class="project-link" href="${p.link}" target="_blank" rel="noopener">
+        View on GitHub
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+          <path d="M7 17 17 7M9 7h8v8"/>
+        </svg>
+      </a>
+    </article>
+  `).join('');
+
   observeReveals();
 }
 

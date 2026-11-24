@@ -20,8 +20,8 @@
     "twitter": ""
   },
   "stats": [
-    { "label": "Projects Built", "value": 3, "suffix": "+" },
-    { "label": "Tech Skills",    "value": 9, "suffix": "+" },
+    { "label": "Projects Built", "value": 6, "suffix": "+" },
+    { "label": "Tech Skills",    "value": 10, "suffix": "+" },
     { "label": "Internship",     "value": 1, "suffix": ""  },
     { "label": "Year of BCA",    "value": 2, "suffix": "nd" }
   ],
@@ -58,25 +58,40 @@
   ],
   "projects": [
     {
+      "title": "TimeSink",
+      "desc": "A time-tracking app that helps you see where your hours actually go, with insights into your daily habits and focus.",
+      "tags": ["javascript", "web", "productivity"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud/timesink"
+    },
+    {
+      "title": "PassLab",
+      "desc": "A password toolkit for generating, checking, and strengthening passwords with security best practices built in.",
+      "tags": ["javascript", "security", "tool"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud/PassLab"
+    },
+    {
+      "title": "Cognitive Load Meter",
+      "desc": "A web tool that measures cognitive load through interactive tasks and visualizes the results in real time.",
+      "tags": ["javascript", "react", "ux"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud/cognitive-load-meter"
+    },
+    {
+      "title": "Local Games",
+      "desc": "A collection of browser-based mini games you can play locally with friends — no internet required after load.",
+      "tags": ["javascript", "html", "games"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud/Local-Games"
+    },
+    {
+      "title": "Feedback App",
+      "desc": "A student feedback manager where responses are stored in MongoDB, with a full Node.js & Express backend.",
+      "tags": ["node", "express", "mongodb", "fullstack"],
+      "link": "https://github.com/kirtikadeshmukh25-cloud/Feedback-App"
+    },
+    {
       "title": "Typing Speed Test",
       "desc": "A web app where users type a given sentence and get their WPM (words per minute) score in real time.",
       "tags": ["react", "node", "express"],
-      "link": "https://github.com/kirtikadeshmukh25-cloud",
-      "emoji": "⌨️"
-    },
-    {
-      "title": "Student Feedback Manager",
-      "desc": "Students can submit feedback that is stored in a MongoDB database. Includes a full backend with Node.js & Express.",
-      "tags": ["node", "express", "mongodb", "fullstack"],
-      "link": "https://github.com/kirtikadeshmukh25-cloud",
-      "emoji": "📝"
-    },
-    {
-      "title": "Ask Gemini",
-      "desc": "An AI-powered app where users can ask questions and get responses via the Gemini API. Built with Node.js, Express, and vanilla JS.",
-      "tags": ["node", "express", "javascript"],
-      "link": "https://github.com/kirtikadeshmukh25-cloud",
-      "emoji": "🤖"
+      "link": "https://github.com/kirtikadeshmukh25-cloud/Typing_Speed_Test"
     }
   ]
 }
